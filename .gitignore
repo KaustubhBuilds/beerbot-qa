@@ -1,0 +1,12 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Test artifacts
+.pytest_cache/
+variance_results.json
+
+# OS
+.DS_Store
