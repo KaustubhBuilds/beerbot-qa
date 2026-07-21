@@ -154,7 +154,7 @@ def run_beerbot(user_prompt: str, max_steps: int = 8, verbose: bool = True) -> d
                 if "tool_use_failed" in str(e) and attempt < 2:
                     format_errors += 1
                     if verbose:
-                        print(f"⚠️  Format error, retrying...")
+                        print("⚠️  Format error, retrying...")
                     continue
                 return {"status": "crashed", "error": str(e)[:200], "trace": trace,
                         "recommendation": LAST_RECOMMENDATION, "format_errors": format_errors}
@@ -186,7 +186,7 @@ def run_beerbot(user_prompt: str, max_steps: int = 8, verbose: bool = True) -> d
         recommend_called = any(step["tool"] == "recommend_beer" for step in trace)
         status = "success" if recommend_called else "no_recommendation"
         if verbose and not recommend_called:
-            print(f"\n⚠️  Agent finished without calling recommend_beer.")
+            print("\n⚠️  Agent finished without calling recommend_beer.")
             print(f"   It said: {msg.content}")
         return {"status": status, "trace": trace,
                 "recommendation": LAST_RECOMMENDATION, "text": msg.content,

@@ -44,7 +44,7 @@ Grade the recommendation on 4 dimensions, each on a scale of 1-5:
 4. reasoning_quality: Is the reason field a good explanation?
    - 1 = incoherent, contradicts itself, or invents facts not in the catalog
    - 3 = plausible but generic — could apply to many beers, no specific catalog reference
-   - 5 = specific — references the actual catalog properties (ABV, style, tasting notes, mood tags) 
+   - 5 = specific — references the actual catalog properties (ABV, style, tasting notes, mood tags)
      and connects them concretely to the user's input
 
 Return your grades using the submit_grades tool. Include a brief, honest justification for each score.
@@ -82,7 +82,7 @@ JUDGE_TOOL_SCHEMA = [
 
 def judge_recommendation(user_prompt: str, beer_name: str, reason: str) -> dict:
     """Grade a BeerBot recommendation using an LLM judge.
-    
+
     Returns a dict with scores and justifications for each dimension,
     plus a computed average.
     """
@@ -118,7 +118,7 @@ Reason: {reason}"""
         return {"error": "Judge did not submit grades", "average": None}
 
     grades = json.loads(msg.tool_calls[0].function.arguments)
-    
+
     scores = [
         grades["mood_match"],
         grades["weather_appropriateness"],
@@ -126,7 +126,7 @@ Reason: {reason}"""
         grades["reasoning_quality"],
     ]
     grades["average"] = sum(scores) / len(scores)
-    
+
     return grades
 
 
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 
     print("Judging a sample recommendation...\n")
     result = judge_recommendation(test_prompt, test_beer, test_reason)
-    
+
     print(f"Mood match: {result['mood_match']}/5 — {result['mood_match_reason']}")
     print(f"Weather:    {result['weather_appropriateness']}/5 — {result['weather_appropriateness_reason']}")
     print(f"Food:       {result['food_pairing']}/5 — {result['food_pairing_reason']}")
