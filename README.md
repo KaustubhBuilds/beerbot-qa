@@ -1,5 +1,7 @@
 # beerbot-qa
 
+[![CI](https://github.com/KaustubhBuilds/beerbot-qa/actions/workflows/main.yml/badge.svg)](https://github.com/KaustubhBuilds/beerbot-qa/actions/workflows/main.yml)
+
 A personal training ground for learning how to test non-deterministic LLM agents built as preparation for extending [odoo-quality-pilot](https://github.com/KaustubhBuilds/odoo-quality-pilot) into an agent evaluation framework.
 
 ## Why this exists
